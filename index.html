@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Level Up Energy</title>
+    <link rel="icon" href="logo.png" type="image/png" />
+    <link href="output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Protest+Strike&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lien vers ton fichier CSS compilé Tailwind -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Roboto", sans-serif;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: background-image 1s ease-in-out; /* Transition douce entre les images */
+      }
+
+      a.href {
+        font-family: "Oswald", sans-serif;
+        font-size: 30px;
+      }
+      /* Navigation styling */
+      nav a {
+        position: relative;
+        padding-bottom: 8px;
+        font-family: "Oswald", sans-serif;
+      }
+      nav a.nav-link::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: "";
+        width: 0;
+        height: 2px;
+        background: #ffa500; /* Orange */
+        transition: width 250ms ease;
+      }
+
+      nav a.nav-link:hover::before {
+        width: 100%;
+      }
+
+      /* Assurer que le bouton "Devis Gratuit" n'a pas de soulignement */
+      a.no-underline {
+        text-decoration: none !important;
+      }
+      nav a:hover::before {
+        width: 100%;
+      }
+
+      /* Navigation bar background effect */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+        transition: all 0.3s ease;
+      }
+      .navbar.transparent {
+        background: transparent;
+      }
+      .navbar.scrolled {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+      }
+
+      /* Text styling for "Level Up Energy" */
+      .brand-title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 10px; /* Add margin to separate text from logo */
+      }
+      .brand-title .level-up {
+        font-size: 1.5rem; /* Increase font size for "Level Up" */
+        font-weight: bold;
+        color: white;
+      }
+      .brand-title .energy {
+        font-size: 1rem; /* Slightly smaller font size for "Energy" */
+        font-style: italic;
+        color: #ffa500; /* Orange for "Energy" */
+      }
+
+      /* Padding adjustment for the hero section */
+      .hero {
+        padding-top: 120px;
+      }
+
+      /* Fade in effect for sections */
+      .fade-section {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-section.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Applique l'animation à l'image de la pompe à chaleur */
+      .rotate-img {
+        animation: rotate 10s linear infinite; /* Durée de 10 secondes, répétée à l'infini */
+      }
+
+      .active-link {
+        color: #ffa500 !important; /* Orange */
+        text-decoration: none !important; /* Supprime le soulignement */
+      }
+
+      section {
+        scroll-margin-top: 100px; /* Ajustez selon la hauteur de votre navbar */
+      }
+
+      .container form {
+        max-width: 600px; /* Réduit la largeur du formulaire */
+        margin: 0 auto; /* Centrer le formulaire */
+      }
+
+      .container input,
+      .container textarea,
+      .container select {
+        padding: 8px 12px; /* Réduit le padding des champs */
+        font-size: 0.9rem; /* Diminue la taille de la police */
+      }
+
+      .container button {
+        padding: 10px 20px; /* Réduit le padding du bouton */
+        font-size: 1rem; /* Ajuste la taille du texte du bouton */
+      }
+
+      .container .space-y-4 > * {
+        margin-bottom: 12px; /* Réduit l'espacement entre les champs */
+      }
+
+      /* Réduire la taille du conteneur de la section contact */
+      .container.mx-auto {
+        padding: 20px; /* Réduit le padding de la section globale */
+      }
+
+      /* Améliorer la lisibilité et la taille des colonnes pour le texte d'information */
+      .md\\:w-1\\/2.text-white.space-y-6 {
+        font-size: 0.95rem; /* Légèrement réduire la taille du texte */
+      }
+    </style>
+  </head>
+  <body
+    class="bg-black text-white"
+    style="
+      background-image: url('photovoltaic2.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+    "
+  >
+    <div id="accueil" style="position: absolute; top: 0; left: 0"></div>
+    <!-- Navbar -->
+    <nav class="navbar transparent" data-aos="flip-left">
+      <div
+        class="container mx-auto flex justify-between items-center py-6 px-8"
+        id="accueil"
+      >
+        <!-- Logo + Brand Text -->
+        <div class="flex items-center">
+          <!-- Logo -->
+          <img class="h-10" src="logo.png" alt="Logo" />
+          <!-- Brand Text -->
+          <div class="flex flex-col items-center ml-2">
+            <span class="level-up text-white font-bold">Level Up</span>
+            <span class="energy text-orange-500 italic">Energy</span>
+          </div>
+        </div>
+
+        <!-- Hamburger Menu for mobile -->
+        <div class="md:hidden flex items-center">
+          <button
+            id="hamburger-button"
+            class="hamburger-button text-white focus:outline-none"
+          >
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Navigation Links + Devis Button for desktop and tablet -->
+        <div class="hidden md:flex space-x-6 items-center">
+          <a
+            href="#accueil"
+            class="nav-link text-white hover:text-orange-500 font-medium"
+            >ACCUEIL</a
+          >
+          <a
+            href="#services"
+            class="nav-link text-white hover:text-orange-500 font-medium"
+            >SERVICES</a
+          >
+          <a
+            href="#apropos"
+            class="nav-link text-white hover:text-orange-500 font-medium"
+            >À PROPOS</a
+          >
+          <a
+            href="#partners"
+            class="nav-link text-white hover:text-orange-500 font-medium"
+            >PARTENAIRES</a
+          >
+          <!-- Call to Action Button -->
+          <a
+            href="#contact"
+            class="ml-4 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 flex items-center no-underline"
+          >
+            <img src="devisicon.png" alt="Devis Icon" class="h-5 w-5 mr-2" />
+            DEVIS GRATUIT
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Modal -->
+      <div
+        id="mobile-menu"
+        class="fixed inset-0 hidden bg-black bg-opacity-70 backdrop-blur-lg z-50 flex justify-center items-center"
+        style="height: 100vh"
+      >
+        <div class="flex flex-col items-center space-y-6 text-center">
+          <!-- Close Button (X) centered above the menu items -->
+          <button id="close-button" class="text-white text-4xl mb-4">
+            &times;
+          </button>
+
+          <!-- Mobile Navigation Links -->
+          <a
+            href="#accueil"
+            class="block py-2 text-2xl text-white hover:text-orange-500"
+            >ACCUEIL</a
+          >
+          <a
+            href="#services"
+            class="block py-2 text-2xl text-white hover:text-orange-500"
+            >SERVICES</a
+          >
+          <a
+            href="#apropos"
+            class="block py-2 text-2xl text-white hover:text-orange-500"
+            >À PROPOS</a
+          >
+          <a
+            href="#partners"
+            class="block py-2 text-2xl text-white hover:text-orange-500"
+            >PARTENAIRES</a
+          >
+
+          <!-- Call to Action Button (Devis Gratuit) -->
+          <a
+            href="#contact"
+            class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 flex items-center"
+          >
+            <img src="devisicon.png" alt="Devis Icon" class="h-5 w-5 mr-2" />
+            DEVIS GRATUIT
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Script pour gérer le menu hamburger -->
+    <script>
+      const hamburgerButton = document.getElementById("hamburger-button");
+      const closeButton = document.getElementById("close-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileNavLinks = document.querySelectorAll("#mobile-menu a"); // Sélectionner tous les liens du modal
+
+      hamburgerButton.addEventListener("click", () => {
+        mobileMenu.classList.remove("hidden");
+        mobileMenu.classList.add("flex"); // Affiche le menu avec flexbox
+      });
+
+      closeButton.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex"); // Cache le menu
+      });
+
+      // Fermer le menu modal quand un lien est cliqué
+      mobileNavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          mobileMenu.classList.remove("flex"); // Cache le menu après un clic
+        });
+      });
+    </script>
+
+    <!-- Header Section avec animation -->
+    <section
+      class="hero fade-section flex flex-col items-center py-12 mt-40 md:mt-40 relative overflow-hidden"
+    >
+      <!-- Phrase publicitaire avec typewriting -->
+      <div class="absolute top-0 left-0 right-0 text-center">
+        <!-- "Level Up Energy" avec animation d'écriture -->
+        <h3
+          id="levelup-text"
+          class="text-xl md:text-3xl font-extrabold text-white"
+        >
+          <!-- Animation de "Level Up Energy" ici -->
+        </h3>
+        <!-- "L'énergie de demain, entre vos mains" apparaîtra ici -->
+        <h3
+          id="typing-text"
+          class="text-lg md:text-2xl font-extrabold text-white mt-2"
+        ></h3>
+      </div>
+
+      <!-- Animation text qui se transforme (Autoconsommation, Borne, etc.) -->
+      <div
+        class="absolute top-16 md:top-24 left-0 right-0 flex flex-col items-center space-y-2 md:space-y-4"
+      >
+        <div
+          id="text-animation"
+          class="text-base md:text-xl font-semibold text-orange-500 text-center"
+        ></div>
+      </div>
+
+      <div
+        class="container relative mx-auto flex flex-col md:flex-row items-center border border-white rounded-lg max-w-md p-4 md:p-8 mt-24 md:mt-28"
+        style="max-width: 90%"
+      >
+        <!-- Badge "A LA UNE" -->
+        <div
+          class="absolute top-0 left-0 bg-orange-500 text-white text-xs md:text-sm px-2 py-1 rounded-br-lg rounded-tl-lg"
+        >
+          BEST-SELLER
+        </div>
+
+        <div
+          class="text-center md:text-left w-full md:w-1/2 space-y-2 md:space-y-4 px-4 mt-6 md:mt-10 relative z-10"
+        >
+          <h1 class="text-3xl md:text-5xl font-bold text-white animate-bounce">
+            Pompe à chaleur
+          </h1>
+          <p class="text-sm md:text-base text-gray-400">
+            Réduisez vos factures d'énergie tout en respectant l'environnement
+            grâce à une pompe à chaleur performante. Nos experts en Belgique
+            vous garantissent une installation professionnelle et un confort
+            durable. Optez pour une solution écologique et économique dès
+            aujourd'hui.
+          </p>
+          <a
+            href="#contact"
+            class="px-6 py-3 md:px-8 md:py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 inline-block"
+            style="font-family: 'Oswald', sans-serif"
+          >
+            DEVIS GRATUIT
+          </a>
+        </div>
+
+        <!-- Image Section -->
+        <div
+          class="w-full md:w-1/2 mt-6 md:mt-0 relative z-10 flex justify-center md:justify-start"
+        >
+          <img
+            class="w-full max-w-xs md:max-w-full h-auto rotate-img"
+            src="pompeachaleur.jpg"
+            alt="Pompe à chaleur"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Script d'animation du texte -->
+    <script>
+      const typingText = "L'énergie de demain, entre vos mains !";
+      const levelUpText = "Level Up ";
+      const energyText = "Energy";
+      let index = 0;
+      let currentText = "";
+      let isTypingEnergy = false;
+
+      function typeText() {
+        if (!isTypingEnergy) {
+          if (index < levelUpText.length) {
+            document.getElementById("levelup-text").innerHTML +=
+              levelUpText[index];
+            index++;
+          } else if (index === levelUpText.length) {
+            const energyElement = document.createElement("span");
+            energyElement.style.color = "#32CD32"; // vert initialement
+            energyElement.textContent = energyText;
+            document.getElementById("levelup-text").appendChild(energyElement);
+            isTypingEnergy = true;
+            setTimeout(() => {
+              energyElement.style.transition = "color 2s ease";
+              energyElement.style.color = "#FFA500"; // Transition vers orange
+            }, 500); // Délai avant la transition
+            index++;
+          }
+        }
+
+        if (
+          index > levelUpText.length &&
+          index - levelUpText.length <= typingText.length
+        ) {
+          currentText = typingText.slice(0, index - levelUpText.length);
+          document.getElementById("typing-text").innerHTML = currentText;
+          index++;
+        }
+
+        if (index <= levelUpText.length + typingText.length) {
+          setTimeout(typeText, 100); // ajuster la vitesse de l'écriture ici
+        }
+      }
+
+      // Liste des services qui doivent apparaître les uns après les autres
+      const services = [
+        "⚡ Autoconsommation : Produisez votre propre énergie grâce à nos panneaux photovoltaïques",
+        "🔋 Borne de recharge : Rechargez vos véhicules électriques de manière simple et efficace",
+        "🔥 Pompe à chaleur : Réchauffez votre maison tout en réduisant votre impact écologique",
+      ];
+
+      let currentService = 0;
+
+      // Fonction pour changer de texte
+      function changeService() {
+        const textElement = document.getElementById("text-animation");
+        textElement.textContent = services[currentService];
+
+        // Passer au service suivant (boucle infinie)
+        currentService = (currentService + 1) % services.length;
+
+        // Repasser cette fonction après 3 secondes
+        setTimeout(changeService, 3000);
+      }
+
+      // Lancer l'animation au chargement de la page
+      window.onload = function () {
+        typeText();
+        changeService();
+      };
+    </script>
+
+    <!-- Tailwind CSS Animation Styles -->
+    <style>
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .rotate-img {
+        animation: rotate 10s linear infinite;
+      }
+
+      #typing-text::after {
+        content: "|";
+        animation: blink 0.7s infinite;
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    </style>
+
+    <!-- Services Section -->
+    <section
+      id="services"
+      class="fade-section w-full bg-white py-8 px-4 md:py-12 md:px-40 mt-10 md:mt-20 mb-20 md:mb-40"
+    >
+      <div class="container mx-auto text-center mb-20 md:mb-40">
+        <h2 class="text-3xl md:text-5xl font-bold text-black mb-4">
+          NOS SERVICES
+        </h2>
+        <p class="text-gray-400 mb-8 md:mb-12">
+          Nous offrons une gamme complète de solutions énergétiques durables, de
+          l'installation de pompes à chaleur aux panneaux photovoltaïques et
+          bornes de recharge. Profitez de technologies innovantes pour réduire
+          vos coûts énergétiques et minimiser votre impact environnemental.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div
+            class="bg-gray-800 p-4 md:p-6 rounded-lg hover:bg-gray-700 transform hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl"
+            data-aos="zoom-in"
+          >
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
+              Pompe à chaleur
+            </h3>
+            <p class="text-gray-400 text-sm md:text-base">
+              Profitez d'une technologie écoénergétique pour chauffer votre
+              maison à moindre coût. La solution idéale pour un chauffage
+              performant et respectueux de l'environnement.
+            </p>
+            <img
+              class="mt-4 w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-300"
+              src="pompeachaleur2.jpg"
+              alt="Pompe à chaleur Image"
+            />
+          </div>
+
+          <!-- Service 2 -->
+          <div
+            class="bg-gray-800 p-4 md:p-6 rounded-lg hover:bg-gray-700 transform hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl"
+            data-aos="zoom-in"
+          >
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
+              Panneaux photovoltaïques
+            </h3>
+            <p class="text-gray-400 text-sm md:text-base">
+              Réduisez drastiquement vos factures et devenez indépendant des
+              fournisseurs d'énergie. Investissez dans une solution qui respecte
+              la planète et augmente la valeur de votre bien.
+            </p>
+            <img
+              class="mt-4 w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-300"
+              src="photovoltaic3.jpg"
+              alt="Panneaux Photovoltaïques Image"
+            />
+          </div>
+
+          <!-- Service 3 -->
+          <div
+            class="bg-gray-800 p-4 md:p-6 rounded-lg hover:bg-gray-700 transform hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl"
+            data-aos="zoom-in"
+          >
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
+              Borne de recharge
+            </h3>
+            <p class="text-gray-400 text-sm md:text-base">
+              Installez une borne à domicile pour une gestion optimale de vos
+              véhicules électriques. Votre station de recharge personnelle pour
+              rouler sans contrainte tout en réduisant votre empreinte carbone.
+            </p>
+            <img
+              class="mt-4 w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-300"
+              src="borne4.jpg"
+              alt="Borne de Recharge Image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section
+      id="apropos"
+      class="fade-section w-full bg-white py-8 px-4 md:py-12 md:px-40 mt-20 md:mt-60"
+    >
+      <div class="container mx-auto mb-20 md:mb-40">
+        <!-- Title Section -->
+        <div class="text-center mb-12 md:mb-20">
+          <h2 class="text-3xl md:text-5xl font-bold text-black mb-4">
+            À PROPOS
+          </h2>
+          <p class="text-base md:text-lg text-gray-500">
+            Level Up Energy est une entreprise spécialisée dans les solutions
+            énergétiques renouvelables en Belgique.
+          </p>
+        </div>
+        <!-- Content Section -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-8"
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+        >
+          <!-- Left Column (Text) -->
+          <div>
+            <h3 class="text-xl md:text-2xl font-semibold text-black mb-4">
+              🌱 Notre Mission
+            </h3>
+            <p class="text-sm md:text-base text-gray-600 mb-6">
+              Nous offrons des solutions durables pour vous aider à réduire
+              votre empreinte carbone tout en économisant sur vos factures
+              d'énergie. Que ce soit pour votre maison ou entreprise, nous vous
+              accompagnons dans chaque étape de votre projet.
+            </p>
+
+            <h3 class="text-xl md:text-2xl font-semibold text-black mb-4">
+              ⚙️ Nos Services
+            </h3>
+            <ul
+              class="list-inside list-disc text-sm md:text-base text-gray-600 mb-6"
+            >
+              <li>Installation de panneaux photovoltaïques</li>
+              <li>Borne de recharge pour véhicules électriques</li>
+              <li>Intégration de solutions d’autoconsommation</li>
+            </ul>
+
+            <h3 class="text-xl md:text-2xl font-semibold text-black mb-4">
+              ✨ Pourquoi nous ?
+            </h3>
+            <p class="text-sm md:text-base text-gray-600">
+              Nos équipes certifiées vous garantissent des installations sur
+              mesure et optimisées pour maximiser votre rendement énergétique.
+            </p>
+          </div>
+
+          <!-- Right Column (Image & Key Points) -->
+          <div class="flex flex-col items-center justify-center">
+            <img
+              class="mx-auto mb-6 w-64 md:w-80 h-auto rounded-lg shadow-lg"
+              src="logo2.png"
+              alt="About Image"
+            />
+            <div class="text-center">
+              <h4 class="text-lg md:text-xl font-semibold text-black mb-4">
+                Faites le pas vers l'avenir 🌍
+              </h4>
+              <p class="text-sm md:text-base text-gray-600">
+                Investissez dès aujourd'hui dans l'énergie renouvelable et
+                profitez des avantages financiers et écologiques.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section
+      class="w-full bg-gray-900 py-12 mt-20"
+      data-aos="flip-left"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000"
+      id="partners"
+    >
+      <div class="container mx-auto text-center mb-40">
+        <h2 class="text-5xl font-bold text-white">PARTENAIRES</h2>
+        <p class="text-lg text-gray-400 mb-12">
+          Nous collaborons avec des partenaires de renommée mondiale pour vous
+          offrir des solutions énergétiques de haute qualité.
+        </p>
+
+        <!-- Logo Carousel -->
+        <div class="partners-carousel overflow-hidden relative">
+          <div class="logos-container flex items-center space-x-8">
+            <!-- Logos (duplicated to create seamless effect) -->
+            <img
+              src="Huawei.jpg"
+              alt="Partenaire 1"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="Lg.jpg"
+              alt="Partenaire 2"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="Luxor.jpg"
+              alt="Partenaire 3"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="Atlantic.jpg"
+              alt="Partenaire 4"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="trina.jpg"
+              alt="Partenaire 5"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="Sunpower.jpg"
+              alt="Partenaire 6"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="Sungrow.jpg"
+              alt="Partenaire 7"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="SMA.jpg"
+              alt="Partenaire 8"
+              class="h-20 w-auto object-contain"
+            />
+
+            <!-- Duplicate the logos to ensure seamless loop -->
+            <img
+              src="Huawei.jpg"
+              alt="Partenaire 1"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="Lg.jpg"
+              alt="Partenaire 2"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="Luxor.jpg"
+              alt="Partenaire 3"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="Atlantic.jpg"
+              alt="Partenaire 4"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="trina.jpg"
+              alt="Partenaire 5"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="Sunpower.jpg"
+              alt="Partenaire 6"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="Sungrow.jpg"
+              alt="Partenaire 7"
+              class="h-20 w-auto object-contain"
+            />
+            <img
+              src="SMA.jpg"
+              alt="Partenaire 8"
+              class="h-20 w-auto object-contain"
+            />
+          </div>
+        </div>
+
+        <!-- Call to Action for Partnership -->
+        <div class="mt-12">
+          <p class="text-lg text-gray-400">
+            🤝 <strong class="text-white">Professionnels de l'énergie</strong>,
+            vous souhaitez collaborer avec Level Up Energy et rejoindre nos
+            partenaires pour un avenir énergétique durable ? Nous sommes
+            toujours à la recherche de nouvelles synergies pour renforcer nos
+            offres et innover ensemble. Devenez partenaire et profitez d'une
+            visibilité exceptionnelle !
+          </p>
+          <p class="mt-4 text-lg text-orange-500">
+            🌍 Ensemble, bâtissons un monde plus vert !
+            <a
+              href="#contact"
+              class="font-bold text-white hover:text-orange-500 no-underline"
+            >
+              Contactez-nous
+            </a>
+            dès aujourd'hui pour discuter de nos possibilités de collaboration.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CSS -->
+    <style>
+      .partners-carousel {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+      .logos-container {
+        display: flex;
+        justify-content: space-around;
+        animation: scroll-logos 20s linear infinite;
+        will-change: transform;
+      }
+      @keyframes scroll-logos {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .logos-container img {
+        transition: transform 0.3s ease;
+      }
+      .logos-container img:hover {
+        transform: scale(1.1); /* Agrandissement des logos au survol */
+      }
+    </style>
+
+    <!-- Script (JS optional for touch control) -->
+    <script>
+      // Optionnel : Ajouter un contrôle du carrousel en cas de touch pour mobiles/tablettes
+      const logosContainer = document.querySelector(".logos-container");
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      logosContainer.addEventListener("mousedown", (e) => {
+        isDown = true;
+        logosContainer.classList.add("active");
+        startX = e.pageX - logosContainer.offsetLeft;
+        scrollLeft = logosContainer.scrollLeft;
+      });
+
+      logosContainer.addEventListener("mouseleave", () => {
+        isDown = false;
+        logosContainer.classList.remove("active");
+      });
+
+      logosContainer.addEventListener("mouseup", () => {
+        isDown = false;
+        logosContainer.classList.remove("active");
+      });
+
+      logosContainer.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - logosContainer.offsetLeft;
+        const walk = (x - startX) * 2; //scroll-fast
+        logosContainer.scrollLeft = scrollLeft - walk;
+      });
+    </script>
+
+    <!-- Contact Section -->
+    <section
+      class="fade-section w-full bg-gray-900 py-8 px-4 md:px-40"
+      id="contact"
+    >
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-6">
+        DEVIS GRATUIT
+      </h2>
+
+      <!-- Nouvelle description pour inviter à poser des questions -->
+      <p class="text-center text-white text-base md:text-lg mb-6">
+        Vous avez une question ou une remarque ? N'hésitez pas à nous contacter
+        via ce formulaire. Nous vous répondrons sous 48 heures. Que ce soit pour
+        un devis ou une simple question, notre équipe est à votre écoute !
+      </p>
+
+      <div
+        class="container mx-auto flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8 border border-white rounded-lg p-4 md:p-8 bg-gray-800"
+      >
+        <!-- Left: Form Container -->
+        <div class="w-full md:w-1/2 p-6 rounded-lg shadow-lg">
+          <form class="space-y-4 text-white">
+            <!-- Prénom et Nom sur la même ligne -->
+            <div class="flex space-x-4">
+              <div class="w-1/2">
+                <label for="prenom" class="block mb-2">Prénom :</label>
+                <input
+                  type="text"
+                  id="prenom"
+                  placeholder="Prénom *"
+                  class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
+                  required
+                />
+              </div>
+              <div class="w-1/2">
+                <label for="nom" class="block mb-2">Nom :</label>
+                <input
+                  type="text"
+                  id="nom"
+                  placeholder="Nom de famille *"
+                  class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block mb-2">E-mail :</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="E-mail *"
+                class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
+                required
+              />
+            </div>
+
+            <!-- Adresse -->
+            <div>
+              <label for="adresse" class="block mb-2">Adresse :</label>
+              <input
+                type="text"
+                id="adresse"
+                placeholder="Adresse *"
+                class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
+                required
+              />
+            </div>
+
+            <!-- Téléphone -->
+            <div>
+              <label for="telephone" class="block mb-2">Téléphone :</label>
+              <input
+                type="tel"
+                id="telephone"
+                placeholder="Téléphone *"
+                class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
+                required
+              />
+            </div>
+
+            <!-- Moment de recontact -->
+            <div>
+              <label for="moment" class="block mb-2"
+                >À quel moment être recontacté :</label
+              >
+              <select
+                id="moment"
+                class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
+                required
+              >
+                <option value="" class="text-gray-400">
+                  Sélectionner un moment
+                </option>
+                <option value="Matin">Matin</option>
+                <option value="Après-midi">Après-midi</option>
+                <option value="Soir">Soir</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="message" class="block mb-2">Votre message :</label>
+              <textarea
+                id="message"
+                placeholder="Votre message"
+                class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
+                rows="4"
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              class="w-full px-8 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition duration-300"
+            >
+              Envoyer
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: Information Container -->
+        <div class="w-full md:w-1/2 text-white space-y-6">
+          <p class="text-lg md:text-xl flex items-center">
+            <img src="logo.png" alt="Logo" class="h-8 w-8 mr-2" />
+            <span class="text-3xl md:text-4xl font-bold mr-2">Level Up</span>
+            <span
+              class="text-3xl md:text-4xl font-bold italic text-orange-500 ml-1"
+            >
+              Energy
+            </span>
+          </p>
+
+          <p class="text-base md:text-lg">
+            Nous sommes à votre disposition pour répondre à toutes vos questions
+            et vous accompagner dans vos projets d'énergie renouvelable.
+          </p>
+          <hr />
+          <div class="space-y-2">
+            <h4 class="text-xl md:text-2xl font-semibold">Coordonnées</h4>
+            <p class="text-base md:text-lg flex items-center">
+              <img
+                src="position.png"
+                alt="Position Icon"
+                class="h-6 w-6 mr-2"
+              />
+              <strong class="mr-2 whitespace-nowrap">Adresse :</strong>
+              Leuvensesteenweg 246, 1932 Zaventem
+            </p>
+            <p class="text-base md:text-lg flex items-center">
+              <img src="phone.png" alt="Phone Icon" class="h-6 w-6 mr-2" />
+              <strong class="mr-2">Téléphone :</strong> 02/520.00.79
+            </p>
+            <p class="text-base md:text-lg flex items-center">
+              <img src="email.png" alt="Email Icon" class="h-6 w-6 mr-2" />
+              <strong class="mr-2">Email :</strong> info@levelupenergy.be
+            </p>
+          </div>
+          <hr />
+          <div class="space-y-2">
+            <h4 class="text-xl md:text-2xl font-semibold">
+              Horaires d'ouverture
+            </h4>
+            <p class="text-base md:text-lg">Lundi - Vendredi : 8h00 - 18h00</p>
+            <p class="text-base md:text-lg">Samedi : 9h00 - 12h00</p>
+            <p class="text-base md:text-lg">Dimanche : Fermé</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CSS -->
+    <style>
+      form input,
+      form textarea,
+      form select {
+        font-size: 1rem;
+        font-family: "Roboto", sans-serif;
+        background-color: #f9f9f9;
+      }
+      form button {
+        font-family: "Roboto", sans-serif;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+      .form-container {
+        background-color: white;
+      }
+    </style>
+
+    <hr />
+    <!-- Footer -->
+    <footer class="w-full bg-gray-900 text-gray-400 py-12 px-4 md:px-40">
+      <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Logo and Description -->
+        <div class="flex flex-col items-start space-y-4">
+          <img src="logo.png" alt="Logo" class="h-12" />
+          <p class="text-sm md:text-base">
+            <em>Level Up Energy</em> est dédié à fournir des solutions
+            énergétiques durables. Faites confiance à notre expertise pour
+            réduire vos coûts énergétiques et promouvoir un avenir plus
+            <span class="text-green-500">vert</span>.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="flex flex-col space-y-2">
+          <h3 class="text-lg font-semibold text-white">Liens rapides</h3>
+          <a href="#accueil" class="hover:text-orange-500">Accueil</a>
+          <a href="#services" class="hover:text-orange-500">Services</a>
+          <a href="#apropos" class="hover:text-orange-500">À propos</a>
+          <a href="#contact" class="hover:text-orange-500">Contact</a>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="flex flex-col space-y-2">
+          <h3 class="text-lg font-semibold text-white">Coordonnées</h3>
+          <p class="text-sm md:text-base">
+            <img
+              src="position.png"
+              alt="Location Icon"
+              class="inline h-5 w-5 mr-2"
+            />
+            Leuvensesteenweg 246, 1932 Zaventem
+          </p>
+          <p class="text-sm md:text-base">
+            <img src="phone.png" alt="Phone Icon" class="inline h-5 w-5 mr-2" />
+            02/520.00.79
+          </p>
+          <p class="text-sm md:text-base">
+            <img src="email.png" alt="Email Icon" class="inline h-5 w-5 mr-2" />
+            info@levelupenergy.be
+          </p>
+        </div>
+
+        <!-- Developer Information -->
+        <div class="flex flex-col items-start space-y-2">
+          <h3 class="text-lg font-semibold text-white">Développeur</h3>
+          <p class="text-sm md:text-base">
+            Développé par
+            <a href="https://www.nainnovations.be"
+              ><strong>NA Innovations</strong></a
+            >
+          </p>
+          <p class="text-sm md:text-base">© 2024 Tous droits réservés</p>
+        </div>
+      </div>
+
+      <!-- Bottom Footer -->
+      <div
+        class="container mx-auto mt-8 border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between items-center text-sm"
+      >
+        <p class="text-center md:text-left">Copyright © 2024 Level Up Energy</p>
+        <nav class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#privacy" class="hover:text-orange-500"
+            >Politique de confidentialité</a
+          >
+          <a href="#terms" class="hover:text-orange-500"
+            >Conditions d'utilisation</a
+          >
+        </nav>
+      </div>
+    </footer>
+
+    <!-- JavaScript for smooth scrolling and navbar background effect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      // Change navbar background on scroll
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.remove("transparent");
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+          navbar.classList.add("transparent");
+        }
+      });
+
+      // Intersection Observer for fade-in effect
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          }
+        });
+      });
+
+      document.querySelectorAll(".fade-section").forEach((section) => {
+        fadeObserver.observe(section);
+      });
+
+      // Background image carousel
+      const images = [
+        "photovoltaic1.jpg",
+        "borne1.jpg",
+        "borne2.jpg",
+        "photovoltaic2.jpg",
+      ];
+
+      let currentIndex = 0;
+
+      function changeBackground() {
+        currentIndex = (currentIndex + 1) % images.length;
+        document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
+      }
+
+      // Change background image every 5 seconds
+      setInterval(changeBackground, 5000);
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetElement = document.querySelector(
+            this.getAttribute("href")
+          );
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start", // Aligns section at the top after scroll
+            });
+          }
+        });
+      });
+
+      // Sélectionner tous les liens de navigation
+      const navLinks = document.querySelectorAll("a.nav-link");
+      const sections = document.querySelectorAll("section[id]");
+      const accueilLink = document.querySelector('a[href="#accueil"]');
+      const contactLink = document.querySelector('a[href="#contact"]');
+      const servicesSection = document.getElementById("services");
+
+      // Fonction pour retirer "active-link" de tous les liens
+      function removeActiveLinkFromAll() {
+        navLinks.forEach((link) => link.classList.remove("active-link"));
+      }
+
+      // Fonction pour gérer l'état "Accueil" lorsque vous êtes en haut de la page
+      function handleAccueilLink() {
+        if (window.scrollY === 0) {
+          removeActiveLinkFromAll();
+          accueilLink.classList.add("active-link");
+        }
+      }
+
+      // Intersection Observer pour les sections
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const id = entry.target.getAttribute("id");
+            const navLink = document.querySelector(`a[href="#${id}"]`);
+
+            if (entry.isIntersecting) {
+              // Retirer "active-link" de tous les autres liens
+              removeActiveLinkFromAll();
+              // Ajouter "active-link" au lien correspondant à la section visible
+              navLink.classList.add("active-link");
+            }
+          });
+        },
+        { threshold: 0.5 } // Le lien devient actif quand 50% de la section est visible
+      );
+
+      // Observer chaque section
+      sections.forEach((section) => {
+        sectionObserver.observe(section);
+      });
+
+      // Vérifie la position de défilement pour "Accueil"
+      window.addEventListener("scroll", handleAccueilLink);
+
+      // Vérifier la position au chargement initial de la page
+      handleAccueilLink();
+
+      // Gérer les clics manuels sur les liens de la navbar
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          removeActiveLinkFromAll(); // Retirer la classe "active-link" de tous les liens
+          this.classList.add("active-link"); // Ajouter "active-link" au lien cliqué
+        });
+      });
+
+      // Gérer le cas où la section "Contact" est quittée
+      function handleContactLink() {
+        const contactSection = document.getElementById("contact");
+        const rect = contactSection.getBoundingClientRect();
+
+        // Si la section Contact est complètement en dehors de la vue, retirer "active-link"
+        if (rect.bottom < 0 || rect.top > window.innerHeight) {
+          contactLink.classList.remove("active-link");
+        }
+      }
+
+      // Vérifier la position au scroll pour désactiver "Contact" lorsqu'il est quitté
+      window.addEventListener("scroll", handleContactLink);
+
+      // Supprimez la fonction checkScrollPosition et l'événement de scroll, car cela est déjà géré par l'Intersection Observer
+
+      AOS.init();
+    </script>
+  </body>
+</html>
