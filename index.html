@@ -167,9 +167,18 @@
         padding: 20px; /* Réduit le padding de la section globale */
       }
 
-      /* Améliorer la lisibilité et la taille des colonnes pour le texte d'information */
-      .md\\:w-1\\/2.text-white.space-y-6 {
-        font-size: 0.95rem; /* Légèrement réduire la taille du texte */
+      #mobile-menu {
+        transition: opacity 1s ease, transform 1s ease;
+        opacity: 0;
+        transform: translateY(
+          -50px
+        ); /* Le menu est légèrement en haut, invisible */
+      }
+
+      /* Lorsque le menu est affiché (class "flex" est ajoutée via JS) */
+      #mobile-menu.show {
+        opacity: 1;
+        transform: translateY(0); /* Le menu reprend sa place normale */
       }
     </style>
   </head>
@@ -308,23 +317,31 @@
       const hamburgerButton = document.getElementById("hamburger-button");
       const closeButton = document.getElementById("close-button");
       const mobileMenu = document.getElementById("mobile-menu");
-      const mobileNavLinks = document.querySelectorAll("#mobile-menu a"); // Sélectionner tous les liens du modal
+      const mobileNavLinks = document.querySelectorAll("#mobile-menu a");
 
       hamburgerButton.addEventListener("click", () => {
         mobileMenu.classList.remove("hidden");
-        mobileMenu.classList.add("flex"); // Affiche le menu avec flexbox
+        setTimeout(() => {
+          mobileMenu.classList.add("flex", "show"); // Affiche le menu avec flexbox et ajout de l'animation
+        }, 10); // Petit délai pour que l'ajout de flex se fasse avant show
       });
 
       closeButton.addEventListener("click", () => {
-        mobileMenu.classList.add("hidden");
-        mobileMenu.classList.remove("flex"); // Cache le menu
+        mobileMenu.classList.remove("show"); // Retire la classe show pour faire la transition inverse
+        setTimeout(() => {
+          mobileMenu.classList.remove("flex");
+          mobileMenu.classList.add("hidden");
+        }, 1000); // Attendre la fin de la transition avant de cacher complètement le menu
       });
 
       // Fermer le menu modal quand un lien est cliqué
       mobileNavLinks.forEach((link) => {
         link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
-          mobileMenu.classList.remove("flex"); // Cache le menu après un clic
+          mobileMenu.classList.remove("show"); // Transition de fermeture
+          setTimeout(() => {
+            mobileMenu.classList.remove("flex");
+            mobileMenu.classList.add("hidden");
+          }, 1000); // Attendre la fin de la transition avant de cacher le menu
         });
       });
     </script>
@@ -876,7 +893,13 @@
       >
         <!-- Left: Form Container -->
         <div class="w-full md:w-1/2 p-6 rounded-lg shadow-lg">
-          <form class="space-y-4 text-white">
+          <form
+            id="contact-form"
+            action="https://formspree.io/f/meojbpbr"
+            method="POST"
+            class="space-y-4 text-white"
+          >
+            <input type="hidden" name="_format" value="json" />
             <!-- Prénom et Nom sur la même ligne -->
             <div class="flex space-x-4">
               <div class="w-1/2">
@@ -884,6 +907,7 @@
                 <input
                   type="text"
                   id="prenom"
+                  name="prenom"
                   placeholder="Prénom *"
                   class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
                   required
@@ -894,6 +918,7 @@
                 <input
                   type="text"
                   id="nom"
+                  name="nom"
                   placeholder="Nom de famille *"
                   class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
                   required
@@ -907,6 +932,7 @@
               <input
                 type="email"
                 id="email"
+                name="email"
                 placeholder="E-mail *"
                 class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
                 required
@@ -919,6 +945,7 @@
               <input
                 type="text"
                 id="adresse"
+                name="adresse"
                 placeholder="Adresse *"
                 class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
                 required
@@ -931,6 +958,7 @@
               <input
                 type="tel"
                 id="telephone"
+                name="telephone"
                 placeholder="Téléphone *"
                 class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
                 required
@@ -944,6 +972,7 @@
               >
               <select
                 id="moment"
+                name="moment"
                 class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
                 required
               >
@@ -961,9 +990,11 @@
               <label for="message" class="block mb-2">Votre message :</label>
               <textarea
                 id="message"
+                name="message"
                 placeholder="Votre message"
                 class="w-full px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring focus:ring-orange-500 focus:border-orange-500"
                 rows="4"
+                required
               ></textarea>
             </div>
 
@@ -975,6 +1006,25 @@
               Envoyer
             </button>
           </form>
+          <script>
+            const form = document.getElementById("contact-form");
+            form.addEventListener("submit", async (event) => {
+              event.preventDefault();
+              const formData = new FormData(form);
+              const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                  Accept: "application/json",
+                },
+              });
+              if (response.ok) {
+                alert("Merci ! Votre message a bien été envoyé.");
+              } else {
+                alert("Une erreur est survenue. Veuillez réessayer.");
+              }
+            });
+          </script>
         </div>
 
         <!-- Right: Information Container -->
@@ -1110,12 +1160,18 @@
       >
         <p class="text-center md:text-left">Copyright © 2024 Level Up Energy</p>
         <nav class="flex space-x-6 mt-4 md:mt-0">
-          <a href="#privacy" class="hover:text-orange-500"
-            >Politique de confidentialité</a
+          <a
+            href="confidentiality.html#politique-confidentialite"
+            class="hover:text-orange-500"
           >
-          <a href="#terms" class="hover:text-orange-500"
-            >Conditions d'utilisation</a
+            Politique de confidentialité
+          </a>
+          <a
+            href="confidentiality.html#conditions-generales"
+            class="hover:text-orange-500"
           >
+            Conditions générales
+          </a>
         </nav>
       </div>
     </footer>
