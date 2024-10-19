@@ -122,18 +122,21 @@
         transform: translateY(0);
       }
 
-      @keyframes rotate {
+      @keyframes zoom {
         0% {
-          transform: rotate(0deg);
+          transform: scale(1); /* Taille normale */
+        }
+        50% {
+          transform: scale(1.05); /* Zoom à 105% */
         }
         100% {
-          transform: rotate(360deg);
+          transform: scale(1); /* Retour à la taille normale */
         }
       }
 
-      /* Applique l'animation à l'image de la pompe à chaleur */
-      .rotate-img {
-        animation: rotate 10s linear infinite; /* Durée de 10 secondes, répétée à l'infini */
+      /* Applique l'animation de zoom/dézoom à l'image */
+      .zoom-img {
+        animation: zoom 5s ease-in-out infinite; /* Animation en 5 secondes, en boucle infinie */
       }
 
       .active-link {
@@ -418,7 +421,7 @@
           class="w-full md:w-1/2 mt-6 md:mt-0 relative z-10 flex justify-center md:justify-start"
         >
           <img
-            class="w-full max-w-xs md:max-w-full h-auto rotate-img"
+            class="w-full max-w-xs md:max-w-full h-auto zoom-img"
             src="pompeachaleur.jpg"
             alt="Image Pompe à chaleur"
           />
@@ -473,7 +476,7 @@
       const services = [
         "⚡ Autoconsommation : Produisez votre propre énergie grâce à nos panneaux photovoltaïques",
         "🔋 Borne de recharge : Rechargez vos véhicules électriques de manière simple et efficace",
-        "🔥 Pompe à chaleur : Réchauffez votre maison tout en réduisant votre impact écologique",
+        "🔥 Pompe à chaleur : Chauffez votre maison en hiver, rafraîchissez-la en été, tout en réduisant votre empreinte carbone",
       ];
 
       let currentService = 0;
@@ -555,9 +558,9 @@
               Pompe à chaleur
             </h3>
             <p class="text-gray-400 text-sm md:text-base">
-              Profitez d'une technologie écoénergétique pour chauffer votre
-              maison à moindre coût. La solution idéale pour un chauffage
-              performant et respectueux de l'environnement.
+              Chauffage en hiver, climatisation en été. Profitez d'une solution
+              écoénergétique fiable pour un confort toute l'année, à moindre
+              coût et respectueuse de l'environnement.
             </p>
             <img
               class="mt-4 w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-300"
@@ -650,6 +653,7 @@
             <ul
               class="list-inside list-disc text-sm md:text-base text-gray-600 mb-6"
             >
+              <li>Pompe à chaleur : confort hiver/été</li>
               <li>Installation de panneaux photovoltaïques</li>
               <li>Borne de recharge pour véhicules électriques</li>
               <li>Intégration de solutions d’autoconsommation</li>
@@ -1061,7 +1065,7 @@
                 class="h-6 w-6 mr-2"
               />
               <strong class="mr-2 whitespace-nowrap">Adresse :</strong>
-              Leuvensesteenweg 246, 1932 Zaventem
+              Meusegemstraat 62, 1861 Meise
             </p>
             <p class="text-base md:text-lg flex items-center">
               <img src="phone.png" alt="Phone Icon" class="h-6 w-6 mr-2" />
@@ -1069,7 +1073,7 @@
             </p>
             <p class="text-base md:text-lg flex items-center">
               <img src="email.png" alt="Email Icon" class="h-6 w-6 mr-2" />
-              <strong class="mr-2">Email :</strong> info@levelupenergy.be
+              <strong class="mr-2">Email :</strong> lupenergy.be@gmail.com
             </p>
           </div>
           <hr />
@@ -1137,7 +1141,7 @@
               alt="Location Icon"
               class="inline h-5 w-5 mr-2"
             />
-            Leuvensesteenweg 246, 1932 Zaventem
+            Meusegemstraat 62, 1861 Meise
           </p>
           <p class="text-sm md:text-base">
             <img src="phone.png" alt="Phone Icon" class="inline h-5 w-5 mr-2" />
@@ -1145,7 +1149,7 @@
           </p>
           <p class="text-sm md:text-base">
             <img src="email.png" alt="Email Icon" class="inline h-5 w-5 mr-2" />
-            info@levelupenergy.be
+            lupenergy.be@gmail.com
           </p>
         </div>
 
